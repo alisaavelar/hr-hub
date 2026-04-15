@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recognition — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface-hover: #232736; --border: #2a2e3d;
+      --text: #e4e6ef; --text-muted: #8b8fa3;
+      --accent: #FE6901; --accent-dim: rgba(254,105,1,0.15);
+      --green: #4ade80; --green-dim: rgba(74,222,128,0.15);
+      --amber: #fbbf24; --amber-dim: rgba(251,191,36,0.15);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.15);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.15);
+      --pink: #FE3C84; --pink-dim: rgba(254,60,132,0.15);
+      --radius: 12px; --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; overflow-x:hidden; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    .header { padding:48px 32px 32px; max-width:1100px; margin:0 auto; }
+    .breadcrumb { font-size:0.82rem; color:var(--text-muted); margin-bottom:16px; }
+    .breadcrumb a { color:var(--accent); }
+    .header h1 { font-size:2rem; font-weight:800; letter-spacing:-0.03em; background:linear-gradient(135deg, var(--accent), var(--amber)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .header .subtitle { color:var(--text-muted); font-size:1rem; margin-top:4px; }
+    .badge-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .badge { font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:6px; }
+    .content { max-width:1100px; margin:0 auto; padding:0 32px 64px; }
+    .section { margin-top:40px; }
+    .section h2 { font-size:1.25rem; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .section h2 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:16px; }
+    .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .feature-icon { font-size:2rem; margin-bottom:10px; }
+    .feature-title { font-weight:700; font-size:1rem; margin-bottom:8px; }
+    .feature-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.5; }
+    .install-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .install-steps { list-style:none; counter-reset:step; }
+    .install-steps li { counter-increment:step; padding:8px 0; font-size:0.85rem; color:var(--text-muted); display:flex; gap:10px; line-height:1.5; }
+    .install-steps li::before { content:counter(step); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; color:var(--accent); background:var(--accent-dim); width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    code { background:var(--bg); padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+    .footer { max-width:1100px; margin:0 auto; padding:32px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.82rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; }
+    @media (max-width:768px) { .header { padding:24px 16px; } .content { padding:0 16px 48px; } .three-col { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; Recognition</div>
+  <h1>Recognition</h1>
+  <div class="subtitle">Peer recognition, milestone celebrations, and awards programs — making people feel seen for the work they do.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">1 Skill</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Cowork Plugin</span>
+  </div>
+</div>
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Why This Matters</h2>
+    <div class="card">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--text-muted);">Recognition is one of the highest-leverage retention tools a people team has — and one of the most underfunded. Most managers want to recognize their people but don't know how to do it consistently, equitably, or memorably. This skill helps draft recognition messages, design programs, celebrate milestones, and build a culture where great work gets seen.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> What This Skill Does</h2>
+    <div class="three-col">
+      <div class="feature-card" style="border-color:var(--accent);">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-title" style="color:var(--accent);">Recognition Messages</div>
+        <div class="feature-desc">Draft specific, meaningful recognition for a team member — Slack shoutouts, all-hands callouts, LinkedIn recommendations, or award nominations.</div>
+      </div>
+      <div class="feature-card" style="border-color:var(--amber);">
+        <div class="feature-icon">🎂</div>
+        <div class="feature-title" style="color:var(--amber);">Milestone Celebrations</div>
+        <div class="feature-desc">Work anniversaries, promotions, major project completions — craft the right message for every milestone, at every tenure.</div>
+      </div>
+      <div class="feature-card" style="border-color:var(--purple);">
+        <div class="feature-icon">🎖️</div>
+        <div class="feature-title" style="color:var(--purple);">Awards Programs</div>
+        <div class="feature-desc">Design or refresh a recognition program — peer awards, quarterly spotlights, values-based recognition — with nomination templates and selection criteria.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Recognition Moments This Skill Handles</h2>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--accent-dim);">📣</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Public shoutouts.</strong> <span style="color:var(--text-muted);">Specific, non-generic Slack messages or all-hands callouts that name exactly what someone did and why it mattered.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--amber-dim);">🎉</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Work anniversary messages.</strong> <span style="color:var(--text-muted);">Tailored by tenure — a 1-year message hits differently than a 5-year one. Both should feel personal, not templated.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--purple-dim);">🚀</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Promotion announcements.</strong> <span style="color:var(--text-muted);">Draft the team-wide message that celebrates the promotion and tells the story of why this person earned it.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--cyan-dim);">📝</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Award nominations.</strong> <span style="color:var(--text-muted);">Structure a compelling nomination for internal or external awards — with specific examples and impact language.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Trigger Phrases</h2>
+    <div class="card">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Write a recognition message for [name]"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"[Name]'s 3-year work anniversary is coming up"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Draft a promotion announcement for [name]"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Help me design a quarterly awards program"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Nominate [name] for an award"</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Installation</h2>
+    <div class="install-card" style="border-color:var(--accent);">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
+      <ol class="install-steps">
+        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
+        <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
+        <li>All HR skills appear immediately. No restart needed.</li>
+      </ol>
+      <div style="margin-top:16px;">
+        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(254,105,1,0.3);text-decoration:none;">⬇ Download Plugin</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../index.html">← Back to HR Hub</a></span>
+    <span>Recognition</span>
+  </div>
+</div>
+</body>
+</html>

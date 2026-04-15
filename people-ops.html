@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People Operations — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface-hover: #232736; --border: #2a2e3d;
+      --text: #e4e6ef; --text-muted: #8b8fa3;
+      --accent: #FE3C84; --accent-dim: rgba(254,60,132,0.15);
+      --green: #4ade80; --green-dim: rgba(74,222,128,0.15);
+      --amber: #fbbf24; --amber-dim: rgba(251,191,36,0.15);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.15);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.15);
+      --blue: #4F5DFF; --blue-dim: rgba(79,93,255,0.15);
+      --radius: 12px; --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; overflow-x:hidden; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    .header { padding:48px 32px 32px; max-width:1100px; margin:0 auto; }
+    .breadcrumb { font-size:0.82rem; color:var(--text-muted); margin-bottom:16px; }
+    .breadcrumb a { color:var(--accent); }
+    .header h1 { font-size:2rem; font-weight:800; letter-spacing:-0.03em; background:linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .header .subtitle { color:var(--text-muted); font-size:1rem; margin-top:4px; }
+    .badge-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .badge { font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:6px; }
+    .content { max-width:1100px; margin:0 auto; padding:0 32px 64px; }
+    .section { margin-top:40px; }
+    .section h2 { font-size:1.25rem; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .section h2 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:16px; }
+    .card:hover { border-color:var(--accent); }
+    .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .feature-icon { font-size:2rem; margin-bottom:10px; }
+    .feature-title { font-weight:700; font-size:1rem; margin-bottom:8px; }
+    .feature-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.5; }
+    .design-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); }
+    .design-table th { background:var(--surface); padding:12px 16px; text-align:left; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); border-bottom:1px solid var(--border); }
+    .design-table td { padding:14px 16px; font-size:0.88rem; border-bottom:1px solid var(--border); vertical-align:top; }
+    .design-table tr:last-child td { border-bottom:none; }
+    .design-table tr:hover td { background:var(--surface-hover); }
+    .install-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .install-steps { list-style:none; counter-reset:step; }
+    .install-steps li { counter-increment:step; padding:8px 0; font-size:0.85rem; color:var(--text-muted); display:flex; gap:10px; line-height:1.5; }
+    .install-steps li::before { content:counter(step); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; color:var(--accent); background:var(--accent-dim); width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    code { background:var(--bg); padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+    .footer { max-width:1100px; margin:0 auto; padding:32px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.82rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; }
+    @media (max-width:768px) {
+      .header { padding:24px 16px; } .header h1 { font-size:1.5rem; } .content { padding:0 16px 48px; }
+      .three-col { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; People Operations</div>
+  <h1>People Operations</h1>
+  <div class="subtitle">Headcount reports, policy answers, and org design — everything that keeps the people engine running smoothly.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">3 Skills</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Cowork Plugin</span>
+    <span class="badge" style="background:var(--purple-dim);color:var(--purple);">Stage 04 of 04</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Why This Matters</h2>
+    <div class="card">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--text-muted);">
+        Running people operations means answering a hundred questions a week — "what's our headcount?", "can someone work remotely from another state?", "should we hire another PM or a senior IC?" These skills turn those questions into instant, accurate answers. No more digging through policy docs or building yet another headcount spreadsheet from scratch.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Three Skills in This Stage</h2>
+    <div class="three-col">
+      <div class="feature-card" style="border-color:var(--accent);">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title" style="color:var(--accent);">People Report</div>
+        <div class="feature-desc">Headcount snapshots, attrition by team, diversity representation, and org health metrics — ready for leadership in minutes.</div>
+      </div>
+      <div class="feature-card" style="border-color:var(--cyan);">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title" style="color:var(--cyan);">Policy Lookup</div>
+        <div class="feature-desc">Plain-language answers to any policy question — PTO, remote work, expense limits, leave, benefits — without hunting through the handbook.</div>
+      </div>
+      <div class="feature-card" style="border-color:var(--purple);">
+        <div class="feature-icon">🏗️</div>
+        <div class="feature-title" style="color:var(--purple);">Org Planning</div>
+        <div class="feature-desc">Model headcount scenarios, design team structures, and think through spans of control and reporting relationships with a thought partner who knows what good looks like.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> People Report: What Gets Built</h2>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--accent-dim);">👥</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Headcount snapshot.</strong> <span style="color:var(--text-muted);">Total headcount by team, department, and level — formatted for a leadership update or board deck.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--cyan-dim);">📉</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Attrition analysis.</strong> <span style="color:var(--text-muted);">Turnover trends by team with voluntary vs. involuntary breakdowns and tenure analysis. Know where you're losing people and why.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--purple-dim);">🌍</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Diversity metrics.</strong> <span style="color:var(--text-muted);">Representation by race, gender, and seniority level — with the context needed to have honest conversations with leadership.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Trigger Phrases</h2>
+    <div class="card">
+      <table class="design-table">
+        <thead><tr><th>Skill</th><th>Example Phrases</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">People Report</td>
+            <td style="color:var(--text-muted);">
+              "What's our current headcount?" · "Attrition report for Q1" · "Diversity breakdown by department" · "Pull a headcount snapshot for the board deck"
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--cyan);">Policy Lookup</td>
+            <td style="color:var(--text-muted);">
+              "What's our PTO policy?" · "Can [name] work remotely from Texas?" · "How does parental leave work?" · "What's the expense reimbursement limit for travel?"
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Org Planning</td>
+            <td style="color:var(--text-muted);">
+              "Help me think through headcount for next quarter" · "Should I add a manager layer or keep the team flat?" · "What's a reasonable span of control for a VP?" · "Model two org structures for the Product team"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Org Planning: Common Scenarios</h2>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--purple-dim);">🔀</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Reorgs.</strong> <span style="color:var(--text-muted);">Think through the trade-offs of restructuring a team — who reports to whom, what changes, and how to communicate it.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--accent-dim);">🎯</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Next hire decisions.</strong> <span style="color:var(--text-muted);">Given the team's current shape and goals, should you hire a senior IC, a generalist, or a manager? This skill helps you reason through it.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--cyan-dim);">📈</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Scaling plans.</strong> <span style="color:var(--text-muted);">Model what the team needs to look like in 6, 12, and 18 months to hit your goals — with phased headcount and role prioritization.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Installation</h2>
+    <div class="install-card" style="border-color:var(--accent);">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
+      <ol class="install-steps">
+        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
+        <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
+        <li>All 9 HR skills appear immediately. No restart needed.</li>
+      </ol>
+      <div style="margin-top:16px;">
+        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(254,60,132,0.3);text-decoration:none;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">⬇ Download Plugin</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../index.html">← Back to HR Hub</a></span>
+    <span>Stage 04 · People Operations</span>
+  </div>
+</div>
+</body>
+</html>

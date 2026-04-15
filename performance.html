@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Develop & Retain — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface-hover: #232736; --border: #2a2e3d;
+      --text: #e4e6ef; --text-muted: #8b8fa3;
+      --accent: #FFCB03; --accent-dim: rgba(255,203,3,0.15);
+      --green: #4ade80; --green-dim: rgba(74,222,128,0.15);
+      --red: #f87171; --red-dim: rgba(248,113,113,0.15);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.15);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.15);
+      --blue: #4F5DFF; --blue-dim: rgba(79,93,255,0.15);
+      --radius: 12px; --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; overflow-x:hidden; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    .header { padding:48px 32px 32px; max-width:1100px; margin:0 auto; }
+    .breadcrumb { font-size:0.82rem; color:var(--text-muted); margin-bottom:16px; }
+    .breadcrumb a { color:var(--accent); }
+    .header h1 { font-size:2rem; font-weight:800; letter-spacing:-0.03em; background:linear-gradient(135deg, var(--accent), #FE6901); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .header .subtitle { color:var(--text-muted); font-size:1rem; margin-top:4px; }
+    .badge-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .badge { font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:6px; }
+    .content { max-width:1100px; margin:0 auto; padding:0 32px 64px; }
+    .section { margin-top:40px; }
+    .section h2 { font-size:1.25rem; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .section h2 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:16px; }
+    .card:hover { border-color:var(--accent); }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .feature-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .feature-icon { font-size:2rem; margin-bottom:10px; }
+    .feature-title { font-weight:700; font-size:1rem; margin-bottom:8px; }
+    .feature-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.5; }
+    .design-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); }
+    .design-table th { background:var(--surface); padding:12px 16px; text-align:left; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); border-bottom:1px solid var(--border); }
+    .design-table td { padding:14px 16px; font-size:0.88rem; border-bottom:1px solid var(--border); vertical-align:top; }
+    .design-table tr:last-child td { border-bottom:none; }
+    .design-table tr:hover td { background:var(--surface-hover); }
+    .install-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .install-steps { list-style:none; counter-reset:step; }
+    .install-steps li { counter-increment:step; padding:8px 0; font-size:0.85rem; color:var(--text-muted); display:flex; gap:10px; line-height:1.5; }
+    .install-steps li::before { content:counter(step); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; color:var(--accent); background:var(--accent-dim); width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    code { background:var(--bg); padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+    .footer { max-width:1100px; margin:0 auto; padding:32px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.82rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; }
+    @media (max-width:768px) {
+      .header { padding:24px 16px; } .header h1 { font-size:1.5rem; } .content { padding:0 16px 48px; }
+      .two-col { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; Develop &amp; Retain</div>
+  <h1>Develop &amp; Retain</h1>
+  <div class="subtitle">Structured performance reviews and market-competitive comp — so your best people know where they stand and want to stay.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">2 Skills</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Cowork Plugin</span>
+    <span class="badge" style="background:var(--purple-dim);color:var(--purple);">Stage 03 of 04</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Why This Matters</h2>
+    <div class="card">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--text-muted);">
+        Retaining top talent comes down to two things: people feeling seen (performance reviews that are honest and developmental) and people feeling paid fairly (comp that reflects the market, not just the last raise). These skills handle both. Reviews stop being a blank-page problem, and comp conversations become data-backed rather than gut-feel.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Two Skills in This Stage</h2>
+    <div class="two-col">
+      <div class="feature-card" style="border-color:var(--accent);">
+        <div class="feature-icon">⭐</div>
+        <div class="feature-title" style="color:var(--accent);">Performance Review</div>
+        <div class="feature-desc">Self-assessment templates, manager review frameworks, calibration prep with rating distributions, and promotion cases — structured so every cycle runs smoothly.</div>
+      </div>
+      <div class="feature-card" style="border-color:var(--cyan);">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title" style="color:var(--cyan);">Comp Analysis</div>
+        <div class="feature-desc">Benchmark any role against market data, build comp bands, model equity grants, and surface retention risks before they turn into resignation letters.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Performance Review: What Gets Built</h2>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--accent-dim);">📝</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Self-assessment template.</strong> <span style="color:var(--text-muted);">Structured prompts that help employees articulate their impact, development, and goals — not just a blank text box.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--cyan-dim);">👤</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Manager review template.</strong> <span style="color:var(--text-muted);">Structured sections for performance vs. expectations, impact, growth areas, and a recommended rating — with guidance on turning vague feedback into specific behavioral examples.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--purple-dim);">⚖️</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Calibration prep.</strong> <span style="color:var(--text-muted);">Rating distribution summaries, promotion cases, and talking points for the calibration room — so you walk in prepared, not reactive.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Comp Analysis: What Gets Built</h2>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--accent-dim);">📊</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Market benchmarking.</strong> <span style="color:var(--text-muted);">Compare any role's comp against market data — P25, P50, P75 — so you know whether you're competitive, lagging, or leading.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--cyan-dim);">🎯</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Band placement.</strong> <span style="color:var(--text-muted);">Check where a specific employee or candidate sits within your comp band, and whether an adjustment is warranted.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--red-dim);">⚠️</div>
+          <div style="font-size:0.88rem;line-height:1.6;"><strong style="color:var(--text);">Retention risk flags.</strong> <span style="color:var(--text-muted);">Identify people who are likely underpaid relative to market — before they start looking externally.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Trigger Phrases</h2>
+    <div class="card">
+      <table class="design-table">
+        <thead><tr><th>Skill</th><th>Example Phrases</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">Performance Review</td>
+            <td style="color:var(--text-muted);">
+              "Structure a performance review for [name]" · "Review season starts — build a self-assessment template" · "Prep calibration talking points for the eng team" · "Write a manager review for [name]"
+            </td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--cyan);">Comp Analysis</td>
+            <td style="color:var(--text-muted);">
+              "What should we pay a senior PM in SF?" · "Is this offer competitive?" · "Model a 0.15% equity grant for a Director-level hire" · "Who on the team might be underpaid?"
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Installation</h2>
+    <div class="install-card" style="border-color:var(--accent);">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
+      <ol class="install-steps">
+        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
+        <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
+        <li>All 9 HR skills appear immediately. No restart needed.</li>
+      </ol>
+      <div style="margin-top:16px;">
+        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(255,203,3,0.3);text-decoration:none;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">⬇ Download Plugin</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../index.html">← Back to HR Hub</a></span>
+    <span>Stage 03 · Develop &amp; Retain</span>
+  </div>
+</div>
+</body>
+</html>

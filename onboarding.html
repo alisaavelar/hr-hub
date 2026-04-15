@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface-hover: #232736; --border: #2a2e3d;
+      --text: #e4e6ef; --text-muted: #8b8fa3;
+      --accent: #00C385; --accent-dim: rgba(0,195,133,0.15);
+      --green: #4ade80; --green-dim: rgba(74,222,128,0.15);
+      --amber: #fbbf24; --amber-dim: rgba(251,191,36,0.15);
+      --blue: #4F5DFF; --blue-dim: rgba(79,93,255,0.15);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.15);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.15);
+      --radius: 12px; --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.6; overflow-x:hidden; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    .header { padding:48px 32px 32px; max-width:1100px; margin:0 auto; }
+    .breadcrumb { font-size:0.82rem; color:var(--text-muted); margin-bottom:16px; }
+    .breadcrumb a { color:var(--accent); }
+    .header h1 { font-size:2rem; font-weight:800; letter-spacing:-0.03em; background:linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .header .subtitle { color:var(--text-muted); font-size:1rem; margin-top:4px; }
+    .badge-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .badge { font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:6px; }
+    .content { max-width:1100px; margin:0 auto; padding:0 32px 64px; }
+    .section { margin-top:40px; }
+    .section h2 { font-size:1.25rem; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+    .section h2 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:16px; }
+    .card:hover { border-color:var(--accent); }
+    .timeline { display:flex; flex-direction:column; gap:0; }
+    .timeline-item { display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--border); }
+    .timeline-item:last-child { border-bottom:none; }
+    .timeline-marker { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+    .timeline-dot { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.82rem; flex-shrink:0; }
+    .timeline-line { width:2px; flex:1; margin-top:4px; min-height:20px; }
+    .timeline-content { flex:1; padding-bottom:4px; }
+    .timeline-label { font-weight:700; font-size:0.95rem; margin-bottom:6px; }
+    .timeline-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+    .milestone-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .milestone-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; text-align:center; }
+    .milestone-day { font-family:'JetBrains Mono',monospace; font-size:1.4rem; font-weight:700; margin-bottom:8px; }
+    .milestone-title { font-weight:700; font-size:0.9rem; margin-bottom:8px; }
+    .milestone-desc { font-size:0.82rem; color:var(--text-muted); line-height:1.5; }
+    .install-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .install-steps { list-style:none; counter-reset:step; }
+    .install-steps li { counter-increment:step; padding:8px 0; font-size:0.85rem; color:var(--text-muted); display:flex; gap:10px; line-height:1.5; }
+    .install-steps li::before { content:counter(step); font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; color:var(--accent); background:var(--accent-dim); width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    code { background:var(--bg); padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+    .footer { max-width:1100px; margin:0 auto; padding:32px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.82rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; }
+    @media (max-width:768px) {
+      .header { padding:24px 16px; } .header h1 { font-size:1.5rem; } .content { padding:0 16px 48px; }
+      .milestone-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; Onboarding</div>
+  <h1>Onboarding</h1>
+  <div class="subtitle">Every new hire deserves a great first week. This skill builds it for them — and you — before their start date.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">1 Skill</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Cowork Plugin</span>
+    <span class="badge" style="background:var(--purple-dim);color:var(--purple);">Stage 02 of 04</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Why This Matters</h2>
+    <div class="card">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--text-muted);">
+        The first 90 days determine whether a new hire becomes a contributor or a question mark. Most onboarding fails not because of bad intentions, but because nobody has time to build a thoughtful plan. This skill does it in one prompt. You describe the role and the person. It builds the pre-start checklist, Day 1 schedule, Week 1 agenda, and 30/60/90-day goals — all ready to share.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> What Gets Built</h2>
+    <div class="card">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot" style="background:var(--accent-dim);color:var(--accent);">Pre</div>
+            <div class="timeline-line" style="background:var(--border);"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-label" style="color:var(--accent);">Pre-Start Checklist</div>
+            <div class="timeline-desc">Everything that needs to happen before the new hire walks in — accounts provisioned, equipment ordered, buddy assigned, first-week invites sent, manager prep done. No more scrambling on Day 1.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot" style="background:var(--blue-dim);color:var(--blue);">D1</div>
+            <div class="timeline-line" style="background:var(--border);"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-label" style="color:var(--blue);">Day 1 Schedule</div>
+            <div class="timeline-desc">A structured hour-by-hour first day — welcome meeting, team intros, systems walkthrough, and a clear end-of-day check-in. First impressions become great ones.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot" style="background:var(--purple-dim);color:var(--purple);">W1</div>
+            <div class="timeline-line" style="background:var(--border);"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-label" style="color:var(--purple);">Week 1 Agenda</div>
+            <div class="timeline-desc">Key meetings, documentation to read, people to meet, and first small wins to pursue. Designed so new hires feel oriented, not overwhelmed.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot" style="background:var(--amber-dim);color:var(--amber);">90d</div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-label" style="color:var(--amber);">30 / 60 / 90-Day Goals</div>
+            <div class="timeline-desc">Role-specific milestone goals for the first three months. Clear enough to evaluate progress, realistic enough to achieve, ambitious enough to matter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> 30 / 60 / 90-Day Framework</h2>
+    <div class="milestone-grid">
+      <div class="milestone-card" style="border-color:var(--accent);">
+        <div class="milestone-day" style="color:var(--accent);">Day 30</div>
+        <div class="milestone-title">Learn</div>
+        <div class="milestone-desc">Understand the org, the team, the tools, and the work. Ask questions. Ship nothing major. Build context.</div>
+      </div>
+      <div class="milestone-card" style="border-color:var(--blue);">
+        <div class="milestone-day" style="color:var(--blue);">Day 60</div>
+        <div class="milestone-title">Contribute</div>
+        <div class="milestone-desc">Identify quick wins. Take ownership of a defined area. Share early findings with the team.</div>
+      </div>
+      <div class="milestone-card" style="border-color:var(--amber);">
+        <div class="milestone-day" style="color:var(--amber);">Day 90</div>
+        <div class="milestone-title">Lead</div>
+        <div class="milestone-desc">Drive an initiative independently. Set your own priorities. Onboarding is complete.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Trigger Phrases</h2>
+    <div class="card">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Create onboarding plan for [name]"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"[Name] starts Monday — build their first week"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"30/60/90 goals for a new [role]"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Pre-start checklist for [name]"</code>
+        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"What needs to happen before [name]'s start date?"</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Installation</h2>
+    <div class="install-card" style="border-color:var(--accent);">
+      <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
+      <ol class="install-steps">
+        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
+        <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
+        <li>All 9 HR skills appear immediately. No restart needed.</li>
+      </ol>
+      <div style="margin-top:16px;">
+        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(0,195,133,0.3);text-decoration:none;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">⬇ Download Plugin</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../index.html">← Back to HR Hub</a></span>
+    <span>Stage 02 · Onboarding</span>
+  </div>
+</div>
+</body>
+</html>
