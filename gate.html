@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal Access — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#0f1117;
+      color:#e4e6ef;
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .gate {
+      background:#1a1d27;
+      border:1px solid #2a2e3d;
+      border-radius:16px;
+      padding:48px 40px;
+      width:100%;
+      max-width:420px;
+      text-align:center;
+      box-shadow:0 24px 64px rgba(0,0,0,0.4);
+    }
+    .lock-icon {
+      font-size:2.5rem;
+      margin-bottom:20px;
+    }
+    h1 {
+      font-size:1.35rem;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      margin-bottom:8px;
+    }
+    .subtitle {
+      font-size:0.88rem;
+      color:#8b8fa3;
+      line-height:1.5;
+      margin-bottom:32px;
+    }
+    input {
+      width:100%;
+      background:#0f1117;
+      border:1px solid #2a2e3d;
+      border-radius:10px;
+      color:#e4e6ef;
+      font-size:1rem;
+      font-family:'Inter',sans-serif;
+      padding:14px 16px;
+      text-align:center;
+      letter-spacing:0.05em;
+      outline:none;
+      transition:border-color 0.15s;
+      margin-bottom:12px;
+    }
+    input:focus { border-color:#FEA08D; }
+    input.error { border-color:#f87171; animation:shake 0.3s ease; }
+    @keyframes shake {
+      0%,100% { transform:translateX(0); }
+      25% { transform:translateX(-6px); }
+      75% { transform:translateX(6px); }
+    }
+    button {
+      width:100%;
+      background:#FEA08D;
+      color:#0f1117;
+      border:none;
+      border-radius:10px;
+      font-size:0.95rem;
+      font-weight:700;
+      font-family:'Inter',sans-serif;
+      padding:14px;
+      cursor:pointer;
+      transition:opacity 0.15s, transform 0.1s;
+    }
+    button:hover { opacity:0.9; }
+    button:active { transform:scale(0.98); }
+    .error-msg {
+      font-size:0.8rem;
+      color:#f87171;
+      margin-top:10px;
+      display:none;
+    }
+    .footer-note {
+      margin-top:28px;
+      font-size:0.75rem;
+      color:#555870;
+    }
+  </style>
+</head>
+<body>
+<div class="gate">
+  <div class="lock-icon">🔒</div>
+  <h1>Internal Access Only</h1>
+  <p class="subtitle">This site is for CodePath team members.<br>Enter the access code to continue.</p>
+  <input type="password" id="code" placeholder="Access code" autocomplete="off" />
+  <button onclick="checkCode()">Enter</button>
+  <div class="error-msg" id="errMsg">Incorrect access code. Please try again.</div>
+  <div class="footer-note">Contact People Ops if you need access.</div>
+</div>
+
+<script>
+  // Get redirect URL from query param
+  function getRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    const r = params.get('r');
+    // Only allow same-origin redirects
+    if (r && r.startsWith(window.location.origin)) return r;
+    return window.location.origin + '/hr-hub/';
+  }
+
+  // If already authenticated, redirect immediately
+  if (sessionStorage.getItem('hrHubAuth') === 'true') {
+    window.location.replace(getRedirect());
+  }
+
+  function checkCode() {
+    const input = document.getElementById('code');
+    const errMsg = document.getElementById('errMsg');
+    // Access code (obfuscated — not real security, deterrent only)
+    const h = btoa('employee2026');
+    if (btoa(input.value.trim()) === h) {
+      sessionStorage.setItem('hrHubAuth', 'true');
+      window.location.replace(getRedirect());
+    } else {
+      input.classList.add('error');
+      errMsg.style.display = 'block';
+      setTimeout(() => input.classList.remove('error'), 400);
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  // Allow Enter key
+  document.getElementById('code').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkCode();
+  });
+</script>
+</body>
+</html>
