@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onboarding — HR Hub</title>
@@ -63,7 +70,7 @@
 <body>
 
 <div class="header">
-  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; Onboarding</div>
+  <div class="breadcrumb"><a href="index.html">HR Hub</a> &nbsp;/&nbsp; Onboarding</div>
   <h1>Onboarding</h1>
   <div class="subtitle">Every new hire deserves a great first week. This skill builds it for them — and you — before their start date.</div>
   <div class="badge-row">
@@ -170,13 +177,13 @@
     <div class="install-card" style="border-color:var(--accent);">
       <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
       <ol class="install-steps">
-        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li><a href="hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
         <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
         <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
         <li>All 9 HR skills appear immediately. No restart needed.</li>
       </ol>
       <div style="margin-top:16px;">
-        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(0,195,133,0.3);text-decoration:none;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">⬇ Download Plugin</a>
+        <a href="hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(0,195,133,0.3);text-decoration:none;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">⬇ Download Plugin</a>
       </div>
     </div>
   </div>
@@ -185,7 +192,7 @@
 
 <div class="footer">
   <div class="footer-inner">
-    <span><a href="../index.html">← Back to HR Hub</a></span>
+    <span><a href="index.html">← Back to HR Hub</a></span>
     <span>Stage 02 · Onboarding</span>
   </div>
 </div>
