@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benefits — HR Hub</title>
@@ -33,6 +40,7 @@
     .section h2 .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
     .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-bottom:16px; }
     .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .two-col { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
     .feature-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
     .feature-icon { font-size:2rem; margin-bottom:10px; }
     .feature-title { font-weight:700; font-size:1rem; margin-bottom:8px; }
@@ -49,21 +57,54 @@
     code { background:var(--bg); padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
     .footer { max-width:1100px; margin:0 auto; padding:32px; border-top:1px solid var(--border); color:var(--text-muted); font-size:0.82rem; }
     .footer-inner { display:flex; justify-content:space-between; align-items:center; }
-    @media (max-width:768px) { .header { padding:24px 16px; } .content { padding:0 16px 48px; } .three-col { grid-template-columns:1fr; } }
+
+    /* Resource links */
+    .resource-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .resource-link { display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; text-decoration:none; transition:border-color 0.15s, background 0.15s; }
+    .resource-link:hover { border-color:var(--accent); background:var(--surface-hover); text-decoration:none; }
+    .resource-icon { font-size:1.3rem; flex-shrink:0; }
+    .resource-label { font-size:0.88rem; font-weight:600; color:var(--text); }
+    .resource-source { font-size:0.75rem; color:var(--text-muted); margin-top:2px; }
+
+    /* Prompt cards */
+    .prompt-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .prompt-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; cursor:pointer; transition:border-color 0.15s; position:relative; }
+    .prompt-card:hover { border-color:var(--accent); }
+    .prompt-card .prompt-text { font-size:0.88rem; color:var(--text); font-style:italic; line-height:1.5; }
+    .prompt-card .prompt-use { font-size:0.75rem; color:var(--text-muted); margin-top:6px; }
+    .prompt-card .copy-hint { position:absolute; top:10px; right:12px; font-size:0.7rem; color:var(--text-muted); opacity:0; transition:opacity 0.15s; }
+    .prompt-card:hover .copy-hint { opacity:1; }
+
+    /* How-to steps */
+    .howto-steps { display:flex; flex-direction:column; gap:0; }
+    .howto-step { display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--border); }
+    .howto-step:last-child { border-bottom:none; }
+    .step-num { width:32px; height:32px; border-radius:50%; background:var(--accent-dim); border:2px solid var(--accent); display:flex; align-items:center; justify-content:center; font-size:0.82rem; font-weight:800; color:var(--accent); flex-shrink:0; font-family:'JetBrains Mono',monospace; }
+    .step-body {}
+    .step-title { font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .step-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.5; }
+    .step-tip { display:inline-flex; align-items:center; gap:6px; margin-top:8px; font-size:0.78rem; color:var(--accent); background:var(--accent-dim); padding:4px 10px; border-radius:6px; }
+
+    @media (max-width:768px) {
+      .header { padding:24px 16px; } .content { padding:0 16px 48px; }
+      .three-col, .two-col, .resource-grid, .prompt-grid { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
 <div class="header">
-  <div class="breadcrumb"><a href="../index.html">HR Hub</a> &nbsp;/&nbsp; Benefits</div>
+  <div class="breadcrumb"><a href="index.html">HR Hub</a> &nbsp;/&nbsp; Benefits</div>
   <h1>Benefits</h1>
   <div class="subtitle">Enrollment guidance, open enrollment support, and benefits Q&A — so every employee knows what they have and how to use it.</div>
   <div class="badge-row">
-    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">1 Skill</span>
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">1 Skill · 5 Sub-pages</span>
     <span class="badge" style="background:var(--green-dim);color:var(--green);">Cowork Plugin</span>
+    <span class="badge" style="background:var(--purple-dim);color:var(--purple);">Notion + Drive Linked</span>
   </div>
 </div>
 <div class="content">
 
+  <!-- WHY IT MATTERS -->
   <div class="section">
     <h2><span class="dot" style="background:var(--accent);"></span> Why This Matters</h2>
     <div class="card">
@@ -71,6 +112,7 @@
     </div>
   </div>
 
+  <!-- WHAT THE SKILL DOES -->
   <div class="section">
     <h2><span class="dot" style="background:var(--cyan);"></span> What This Skill Does</h2>
     <div class="three-col">
@@ -86,14 +128,214 @@
       </div>
       <div class="feature-card" style="border-color:var(--purple);">
         <div class="feature-icon">🆕</div>
-        <div class="feature-title" style="color:var(--purple);">New Hire Benefits Orientation</div>
+        <div class="feature-title" style="color:var(--purple);">New Hire Orientation</div>
         <div class="feature-desc">A structured walkthrough of all available benefits for new employees — what to enroll in, deadlines, and how each benefit works day-to-day.</div>
       </div>
     </div>
   </div>
 
+  <!-- SUB-PAGES -->
   <div class="section">
-    <h2><span class="dot" style="background:var(--purple);"></span> Benefits Coverage Areas</h2>
+    <h2><span class="dot" style="background:var(--accent);"></span> Explore by Topic</h2>
+    <div class="resource-grid">
+      <a href="medical.html" class="resource-link" style="border-color:var(--accent);">
+        <div class="resource-icon">🏥</div>
+        <div>
+          <div class="resource-label">Medical Benefits</div>
+          <div class="resource-source">Health, dental & vision · Aetna, Kaiser, HRA</div>
+        </div>
+      </a>
+      <a href="retirement.html" class="resource-link" style="border-color:var(--green);">
+        <div class="resource-icon">💰</div>
+        <div>
+          <div class="resource-label">Retirement & 401(k)</div>
+          <div class="resource-source">Empower · Traditional & Roth · Contribution limits</div>
+        </div>
+      </a>
+      <a href="eap.html" class="resource-link" style="border-color:var(--purple);">
+        <div class="resource-icon">🧠</div>
+        <div>
+          <div class="resource-label">Employee Assistance Program</div>
+          <div class="resource-source">Confidential 24/7 · Mental health, legal, financial</div>
+        </div>
+      </a>
+      <a href="leave.html" class="resource-link" style="border-color:var(--cyan);">
+        <div class="resource-icon">🏖️</div>
+        <div>
+          <div class="resource-label">Leave & Time Off</div>
+          <div class="resource-source">FTO · Parental leave · LOA · PFML · Bereavement</div>
+        </div>
+      </a>
+      <a href="perks.html" class="resource-link" style="border-color:var(--amber);">
+        <div class="resource-icon">🎁</div>
+        <div>
+          <div class="resource-label">Perks & Stipends</div>
+          <div class="resource-source">$1,000 prof. dev · Home office · Wellness</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="section">
+    <h2><span class="dot" style="background:var(--green);"></span> How to Use This Skill</h2>
+    <div class="card">
+      <div class="howto-steps">
+        <div class="howto-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Install the HR Hub plugin</div>
+            <div class="step-desc">Download the plugin below and install it via Cowork → Settings → Plugins. The benefits skill activates automatically.</div>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Open a new Cowork conversation</div>
+            <div class="step-desc">Start a fresh session. The plugin loads automatically — no need to select it manually.</div>
+            <div class="step-tip">💡 You can ask in plain English — no special commands needed</div>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Ask your benefits question</div>
+            <div class="step-desc">Type any benefits-related question. The skill will answer in plain language, reference CodePath's specific plans, and link to source documents in Notion and Google Drive when relevant.</div>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Follow up or go deeper</div>
+            <div class="step-desc">Ask follow-up questions, request plan comparisons, or ask the skill to draft an FAQ you can share with employees. It remembers context within the conversation.</div>
+            <div class="step-tip">📎 Paste in an employee's specific situation for personalized guidance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAMPLE PROMPTS -->
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Try These Prompts</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-text">"Give me a plain-language overview of all the benefits a new CodePath employee should enroll in during their first 30 days."</div>
+        <div class="prompt-use">→ Great for onboarding packets or welcome emails</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What's the difference between the HMO and PPO options during open enrollment, and which is better for someone with a family?"</div>
+        <div class="prompt-use">→ Open enrollment season support</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Can you explain how CodePath's FSA works — contribution limits, what's covered, and the deadline to spend it down?"</div>
+        <div class="prompt-use">→ Mid-year FSA questions from employees</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"An employee is going on parental leave next month. Walk me through the leave policy, what they need to do to enroll, and what benefits continue while they're out."</div>
+        <div class="prompt-use">→ Leave of absence planning</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Draft a benefits FAQ I can share with the team for open enrollment — plain language, covers the top 10 questions we always get."</div>
+        <div class="prompt-use">→ HR comms during open enrollment</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What's the Employee Assistance Program and how does an employee access it? Include what's confidential."</div>
+        <div class="prompt-use">→ Sensitive HR conversations</div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Benefits Resources</h2>
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">The skill can pull from these sources when you ask questions. You can also browse them directly.</p>
+
+    <div style="margin-bottom:12px;">
+      <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:10px;">📒 Notion</div>
+      <div class="resource-grid">
+        <a href="https://www.notion.so/1c36208b00cd80df9a49ef773c447bc9" target="_blank" class="resource-link">
+          <div class="resource-icon">🇺🇸</div>
+          <div>
+            <div class="resource-label">US Benefits</div>
+            <div class="resource-source">Notion · Full benefits package overview</div>
+          </div>
+        </a>
+        <a href="https://www.notion.so/13d6208b00cd80b29c6cde13e8b51ffa" target="_blank" class="resource-link">
+          <div class="resource-icon">🎁</div>
+          <div>
+            <div class="resource-label">Benefits and Perks</div>
+            <div class="resource-source">Notion · Perks, stipends, and extras</div>
+          </div>
+        </a>
+        <a href="https://www.notion.so/1f46208b00cd809a929fe34684f06835" target="_blank" class="resource-link">
+          <div class="resource-icon">🏥</div>
+          <div>
+            <div class="resource-label">Medical Benefits</div>
+            <div class="resource-source">Notion · Health plan comparisons</div>
+          </div>
+        </a>
+        <a href="https://www.notion.so/2f46208b00cd8082bdcdc3d6be62a877" target="_blank" class="resource-link">
+          <div class="resource-icon">🧠</div>
+          <div>
+            <div class="resource-label">Employee Assistance Program</div>
+            <div class="resource-source">Notion · Confidential 24/7 support</div>
+          </div>
+        </a>
+        <a href="https://www.notion.so/1df6208b00cd80bd8c5efe6486754300" target="_blank" class="resource-link">
+          <div class="resource-icon">🏖️</div>
+          <div>
+            <div class="resource-label">Flexible Time Off Policy</div>
+            <div class="resource-source">Notion · Exempt employees FTO guide</div>
+          </div>
+        </a>
+        <a href="https://www.notion.so/2026208b00cd81d1a4b6f3a4dfeeb7da" target="_blank" class="resource-link">
+          <div class="resource-icon">📖</div>
+          <div>
+            <div class="resource-label">2026 Employee Handbook</div>
+            <div class="resource-source">Notion · Full handbook including benefits</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:10px;">📁 Google Drive</div>
+      <div class="resource-grid">
+        <a href="https://drive.google.com/drive/folders/1ZADcLdihBzVL66gtmDRw8galqAVDvtEt" target="_blank" class="resource-link">
+          <div class="resource-icon">📂</div>
+          <div>
+            <div class="resource-label">FTE – Benefit Information</div>
+            <div class="resource-source">Google Drive · Main benefits folder</div>
+          </div>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1lQpzQW2dYWyxj_B0n-y7BUTwm0ODRhAA" target="_blank" class="resource-link">
+          <div class="resource-icon">📂</div>
+          <div>
+            <div class="resource-label">2025–2026 Benefits Information</div>
+            <div class="resource-source">Google Drive · Current plan year</div>
+          </div>
+        </a>
+        <a href="https://drive.google.com/drive/folders/1jTTlhevrq5nLgiOkJeJYtwk0JYkLKH0o" target="_blank" class="resource-link">
+          <div class="resource-icon">📂</div>
+          <div>
+            <div class="resource-label">2024–2025 Benefits Information</div>
+            <div class="resource-source">Google Drive · Prior plan year</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COVERAGE TABLE -->
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Coverage Areas</h2>
     <div class="card">
       <table class="design-table">
         <thead><tr><th>Category</th><th>What the Skill Covers</th></tr></thead>
@@ -101,39 +343,27 @@
           <tr><td style="font-weight:600;color:var(--accent);">Health Insurance</td><td style="color:var(--text-muted);">Plan comparisons (HMO/PPO/HDHP), deductibles, co-pays, network, dependent coverage, COBRA</td></tr>
           <tr><td style="font-weight:600;color:var(--cyan);">Retirement</td><td style="color:var(--text-muted);">401(k) contribution limits, employer match, vesting schedule, investment options, rollover</td></tr>
           <tr><td style="font-weight:600;color:var(--purple);">FSA / HSA</td><td style="color:var(--text-muted);">Contribution limits, eligible expenses, rollover rules, HSA vs. FSA trade-offs</td></tr>
-          <tr><td style="font-weight:600;color:var(--amber);">Leave & Time Off</td><td style="color:var(--text-muted);">Parental leave, medical leave, PTO accrual, holidays, bereavement</td></tr>
+          <tr><td style="font-weight:600;color:var(--amber);">Leave & Time Off</td><td style="color:var(--text-muted);">Parental leave, medical leave, FTO policy, holidays, bereavement</td></tr>
           <tr><td style="font-weight:600;color:var(--green);">Perks & Stipends</td><td style="color:var(--text-muted);">Wellness budget, professional development, home office, commuter benefits</td></tr>
+          <tr><td style="font-weight:600;color:var(--text);">EAP</td><td style="color:var(--text-muted);">Confidential 24/7 employee assistance — mental health, financial counseling, legal referrals</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
+  <!-- INSTALL -->
   <div class="section">
-    <h2><span class="dot" style="background:var(--amber);"></span> Trigger Phrases</h2>
-    <div class="card">
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"What benefits do we offer?"</code>
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"Help me compare health plans during open enrollment"</code>
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"What's the difference between an HSA and FSA?"</code>
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"How does our 401(k) match work?"</code>
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"New hire benefits overview"</code>
-        <code style="padding:6px 12px;border-radius:8px;color:var(--accent);font-size:0.82rem;">"When is open enrollment?"</code>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2><span class="dot" style="background:var(--accent);"></span> Installation</h2>
+    <h2><span class="dot" style="background:var(--accent);"></span> Install the Plugin</h2>
     <div class="install-card" style="border-color:var(--accent);">
       <h4 style="font-size:0.9rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;"><span style="color:var(--accent);">⚡</span> Install the HR Hub Plugin</h4>
       <ol class="install-steps">
-        <li><a href="../plugins/hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
+        <li><a href="hr-hub.plugin" style="color:var(--accent);font-weight:600;" download>Download hr-hub.plugin</a></li>
         <li>In Cowork, open <strong style="color:var(--text);">Settings &gt; Plugins</strong></li>
         <li>Click <strong style="color:var(--text);">Install from file</strong> and select the downloaded .plugin file</li>
-        <li>All HR skills appear immediately. No restart needed.</li>
+        <li>All 14 HR skills appear immediately. No restart needed.</li>
       </ol>
       <div style="margin-top:16px;">
-        <a href="../plugins/hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(254,160,141,0.3);text-decoration:none;">⬇ Download Plugin</a>
+        <a href="hr-hub.plugin" download style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent-dim);color:var(--accent);font-weight:600;font-size:0.85rem;border-radius:10px;border:1px solid rgba(254,160,141,0.3);text-decoration:none;">⬇ Download Plugin</a>
       </div>
     </div>
   </div>
@@ -141,8 +371,8 @@
 </div>
 <div class="footer">
   <div class="footer-inner">
-    <span><a href="../index.html">← Back to HR Hub</a></span>
-    <span>Benefits</span>
+    <span><a href="index.html">← Back to HR Hub</a></span>
+    <span>Benefits · HR Hub</span>
   </div>
 </div>
 </body>
