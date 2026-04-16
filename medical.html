@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Benefits — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --bg:#0f1117;--surface:#1a1d27;--surface-hover:#232736;--border:#2a2e3d;
+      --text:#e4e6ef;--text-muted:#8b8fa3;
+      --accent:#FEA08D;--accent-dim:rgba(254,160,141,0.15);
+      --green:#4ade80;--green-dim:rgba(74,222,128,0.15);
+      --amber:#fbbf24;--amber-dim:rgba(251,191,36,0.15);
+      --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);
+      --cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);
+      --radius:12px;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+    a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+    .header{padding:48px 32px 32px;max-width:1100px;margin:0 auto;}
+    .breadcrumb{font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;}
+    .breadcrumb a{color:var(--accent);}
+    .header h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--accent),#FE6901);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header .subtitle{color:var(--text-muted);font-size:1rem;margin-top:4px;}
+    .badge-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    .badge{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;}
+    .content{max-width:1100px;margin:0 auto;padding:0 32px 64px;}
+    .section{margin-top:40px;}
+    .section h2{font-size:1.25rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+    .two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+    .feature-icon{font-size:2rem;margin-bottom:10px;}
+    .feature-title{font-weight:700;font-size:1rem;margin-bottom:8px;}
+    .feature-desc{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .design-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .design-table th{background:var(--surface);padding:12px 16px;text-align:left;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);border-bottom:1px solid var(--border);}
+    .design-table td{padding:14px 16px;font-size:0.88rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    .design-table tr:last-child td{border-bottom:none;}
+    .design-table tr:hover td{background:var(--surface-hover);}
+    .resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .resource-link{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;transition:border-color 0.15s,background 0.15s;}
+    .resource-link:hover{border-color:var(--accent);background:var(--surface-hover);text-decoration:none;}
+    .resource-label{font-size:0.88rem;font-weight:600;color:var(--text);}
+    .resource-source{font-size:0.75rem;color:var(--text-muted);margin-top:2px;}
+    .prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+    .prompt-card:hover{border-color:var(--accent);}
+    .prompt-text{font-size:0.88rem;color:var(--text);font-style:italic;line-height:1.5;}
+    .prompt-use{font-size:0.75rem;color:var(--text-muted);margin-top:6px;}
+    code{background:var(--bg);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.8rem;}
+    .footer{max-width:1100px;margin:0 auto;padding:32px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.82rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;}
+    @media(max-width:768px){.header{padding:24px 16px;}.content{padding:0 16px 48px;}.two-col,.three-col,.resource-grid,.prompt-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../../index.html">HR Hub</a> &nbsp;/&nbsp; <a href="../benefits.html">Benefits</a> &nbsp;/&nbsp; Medical</div>
+  <h1>🏥 Medical Benefits</h1>
+  <div class="subtitle">Health, dental, and vision coverage — plan options, how to enroll, and what's covered.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">Aetna & Kaiser</span>
+    <span class="badge" style="background:var(--cyan-dim);color:var(--cyan);">90% Premium Covered</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Notion Linked</span>
+  </div>
+</div>
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Plan Overview</h2>
+    <div class="card">
+      <table class="design-table">
+        <thead><tr><th>Plan Type</th><th>Provider</th><th>Best For</th><th>Key Detail</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600;color:var(--accent);">HMO</td><td style="color:var(--text-muted);">Kaiser</td><td style="color:var(--text-muted);">California employees, prefer coordinated care</td><td style="color:var(--text-muted);">Lower out-of-pocket, requires referrals</td></tr>
+          <tr><td style="font-weight:600;color:var(--cyan);">PPO</td><td style="color:var(--text-muted);">Aetna</td><td style="color:var(--text-muted);">Outside CA, or want flexible provider access</td><td style="color:var(--text-muted);">See any doctor, higher flexibility</td></tr>
+          <tr><td style="font-weight:600;color:var(--purple);">HDHP + HRA</td><td style="color:var(--text-muted);">Aetna + Difference Card</td><td style="color:var(--text-muted);">Employees wanting lower premiums</td><td style="color:var(--text-muted);">Employer-funded HRA covers out-of-pocket costs</td></tr>
+          <tr><td style="font-weight:600;color:var(--amber);">Dental</td><td style="color:var(--text-muted);">Included</td><td style="color:var(--text-muted);">All employees</td><td style="color:var(--text-muted);">Preventive, basic, and major coverage</td></tr>
+          <tr><td style="font-weight:600;color:var(--green);">Vision</td><td style="color:var(--text-muted);">Included</td><td style="color:var(--text-muted);">All employees</td><td style="color:var(--text-muted);">Annual eye exam + frames/contacts allowance</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Try These Prompts</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-text">"What's the difference between the Kaiser HMO and the Aetna PPO? Which should I pick if I live outside California?"</div>
+        <div class="prompt-use">→ Plan selection guidance</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"How does the Difference Card HRA work? What does it cover and how do I use it?"</div>
+        <div class="prompt-use">→ HDHP + HRA questions</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"I'm adding a dependent during open enrollment. What do I need to do and what's the deadline?"</div>
+        <div class="prompt-use">→ Dependent enrollment</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What percentage of my health insurance premium does CodePath cover for me and my family?"</div>
+        <div class="prompt-use">→ Cost & premium questions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Notion Resources</h2>
+    <div class="resource-grid">
+      <a href="https://www.notion.so/1f46208b00cd809a929fe34684f06835" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🏥</div>
+        <div><div class="resource-label">Medical Benefits</div><div class="resource-source">Notion · Full plan details & comparisons</div></div>
+      </a>
+      <a href="https://www.notion.so/1ba6208b00cd80089bb9ec68cb77d779" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📋</div>
+        <div><div class="resource-label">Comprehensive Benefits Package</div><div class="resource-source">Notion · Full overview incl. medical</div></div>
+      </a>
+      <a href="https://www.notion.so/1c36208b00cd80df9a49ef773c447bc9" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🇺🇸</div>
+        <div><div class="resource-label">US Benefits Guide</div><div class="resource-source">Notion · Complete benefits snapshot</div></div>
+      </a>
+      <a href="https://www.notion.so/13d6208b00cd80b29c6cde13e8b51ffa" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🎁</div>
+        <div><div class="resource-label">Benefits and Perks</div><div class="resource-source">Notion · All benefits at a glance</div></div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../benefits.html">← Back to Benefits</a></span>
+    <span>Medical Benefits · HR Hub</span>
+  </div>
+</div>
+</body>
+</html>

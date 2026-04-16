@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement & 401(k) — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root{--bg:#0f1117;--surface:#1a1d27;--surface-hover:#232736;--border:#2a2e3d;--text:#e4e6ef;--text-muted:#8b8fa3;--accent:#FEA08D;--accent-dim:rgba(254,160,141,0.15);--green:#4ade80;--green-dim:rgba(74,222,128,0.15);--amber:#fbbf24;--amber-dim:rgba(251,191,36,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--radius:12px;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+    a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+    .header{padding:48px 32px 32px;max-width:1100px;margin:0 auto;}
+    .breadcrumb{font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;}.breadcrumb a{color:var(--accent);}
+    .header h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--accent),#FE6901);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header .subtitle{color:var(--text-muted);font-size:1rem;margin-top:4px;}
+    .badge-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    .badge{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;}
+    .content{max-width:1100px;margin:0 auto;padding:0 32px 64px;}
+    .section{margin-top:40px;}
+    .section h2{font-size:1.25rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+    .two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;}
+    .stat-value{font-size:2rem;font-weight:800;letter-spacing:-0.03em;}
+    .stat-label{font-size:0.8rem;color:var(--text-muted);margin-top:4px;}
+    .design-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .design-table th{background:var(--surface);padding:12px 16px;text-align:left;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);border-bottom:1px solid var(--border);}
+    .design-table td{padding:14px 16px;font-size:0.88rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    .design-table tr:last-child td{border-bottom:none;}
+    .design-table tr:hover td{background:var(--surface-hover);}
+    .resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .resource-link{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;transition:border-color 0.15s,background 0.15s;}
+    .resource-link:hover{border-color:var(--accent);background:var(--surface-hover);text-decoration:none;}
+    .resource-label{font-size:0.88rem;font-weight:600;color:var(--text);}
+    .resource-source{font-size:0.75rem;color:var(--text-muted);margin-top:2px;}
+    .prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+    .prompt-card:hover{border-color:var(--accent);}
+    .prompt-text{font-size:0.88rem;color:var(--text);font-style:italic;line-height:1.5;}
+    .prompt-use{font-size:0.75rem;color:var(--text-muted);margin-top:6px;}
+    .footer{max-width:1100px;margin:0 auto;padding:32px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.82rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;}
+    @media(max-width:768px){.header{padding:24px 16px;}.content{padding:0 16px 48px;}.two-col,.stat-row,.resource-grid,.prompt-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../../index.html">HR Hub</a> &nbsp;/&nbsp; <a href="../benefits.html">Benefits</a> &nbsp;/&nbsp; Retirement</div>
+  <h1>💰 Retirement & 401(k)</h1>
+  <div class="subtitle">Tax-advantaged retirement savings through Empower — contribution limits, employer match, and enrollment.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">Empower Retirement</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Traditional & Roth 401(k)</span>
+    <span class="badge" style="background:var(--amber-dim);color:var(--amber);">Notion Linked</span>
+  </div>
+</div>
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> At a Glance</h2>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent);">$23,500</div>
+        <div class="stat-label">2025 IRS contribution limit (under 50)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--green);">$31,000</div>
+        <div class="stat-label">2025 limit with catch-up (age 50+)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--cyan);">Empower</div>
+        <div class="stat-label">Plan administrator (formerly CoAdvantage)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--cyan);"></span> Plan Details</h2>
+    <div class="card">
+      <table class="design-table">
+        <thead><tr><th>Feature</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600;color:var(--accent);">Plan Type</td><td style="color:var(--text-muted);">Traditional 401(k) and Roth 401(k) — pre-tax and after-tax options available</td></tr>
+          <tr><td style="font-weight:600;color:var(--cyan);">Enrollment</td><td style="color:var(--text-muted);">Eligible on first day of employment; enroll anytime through Empower portal</td></tr>
+          <tr><td style="font-weight:600;color:var(--purple);">Contributions</td><td style="color:var(--text-muted);">Change contribution % anytime; takes effect next payroll cycle</td></tr>
+          <tr><td style="font-weight:600;color:var(--amber);">Vesting</td><td style="color:var(--text-muted);">Refer to your plan documents for vesting schedule on any employer contributions</td></tr>
+          <tr><td style="font-weight:600;color:var(--green);">Investment Options</td><td style="color:var(--text-muted);">Managed through Empower — target-date funds, index funds, and more</td></tr>
+          <tr><td style="font-weight:600;color:var(--text);">Rollover</td><td style="color:var(--text-muted);">Can roll over prior 401(k) balances into your CodePath Empower account</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Try These Prompts</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-text">"How do I enroll in the CodePath 401(k) through Empower? Walk me through the steps."</div>
+        <div class="prompt-use">→ New employee enrollment</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What's the difference between a Traditional and Roth 401(k)? Which makes more sense for someone early in their career?"</div>
+        <div class="prompt-use">→ Plan type comparison</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"I have an old 401(k) from a previous employer. Can I roll it into my CodePath plan and how?"</div>
+        <div class="prompt-use">→ Rollover questions</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What changed with the move from CoAdvantage to Empower Retirement? Do I need to do anything?"</div>
+        <div class="prompt-use">→ Transition FAQ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Notion Resources</h2>
+    <div class="resource-grid">
+      <a href="https://www.notion.so/1ba6208b00cd80089bb9ec68cb77d779" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📋</div>
+        <div><div class="resource-label">Comprehensive Benefits Package</div><div class="resource-source">Notion · 401(k) details & employer match</div></div>
+      </a>
+      <a href="https://www.notion.so/19d6208b00cd80868aa1cd02cba6ae0d" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🔄</div>
+        <div><div class="resource-label">CoAdvantage Transition FAQ</div><div class="resource-source">Notion · Empower transition details</div></div>
+      </a>
+      <a href="https://www.notion.so/1c26208b00cd80bbbbb7db8e31280791" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📅</div>
+        <div><div class="resource-label">Q2–Q4 2025 Benefits Calendar</div><div class="resource-source">Notion · 401(k) enrollment reminders</div></div>
+      </a>
+      <a href="https://www.notion.so/1c36208b00cd80df9a49ef773c447bc9" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🇺🇸</div>
+        <div><div class="resource-label">US Benefits Guide</div><div class="resource-source">Notion · Full benefits overview</div></div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../benefits.html">← Back to Benefits</a></span>
+    <span>Retirement & 401(k) · HR Hub</span>
+  </div>
+</div>
+</body>
+</html>

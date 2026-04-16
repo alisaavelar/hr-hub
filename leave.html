@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave & Time Off — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root{--bg:#0f1117;--surface:#1a1d27;--surface-hover:#232736;--border:#2a2e3d;--text:#e4e6ef;--text-muted:#8b8fa3;--accent:#FEA08D;--accent-dim:rgba(254,160,141,0.15);--green:#4ade80;--green-dim:rgba(74,222,128,0.15);--amber:#fbbf24;--amber-dim:rgba(251,191,36,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--radius:12px;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+    a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+    .header{padding:48px 32px 32px;max-width:1100px;margin:0 auto;}
+    .breadcrumb{font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;}.breadcrumb a{color:var(--accent);}
+    .header h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--accent),#FE6901);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header .subtitle{color:var(--text-muted);font-size:1rem;margin-top:4px;}
+    .badge-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    .badge{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;}
+    .content{max-width:1100px;margin:0 auto;padding:0 32px 64px;}
+    .section{margin-top:40px;}
+    .section h2{font-size:1.25rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+    .design-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .design-table th{background:var(--surface);padding:12px 16px;text-align:left;font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);border-bottom:1px solid var(--border);}
+    .design-table td{padding:14px 16px;font-size:0.88rem;border-bottom:1px solid var(--border);vertical-align:top;}
+    .design-table tr:last-child td{border-bottom:none;}
+    .design-table tr:hover td{background:var(--surface-hover);}
+    .resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .resource-link{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;transition:border-color 0.15s,background 0.15s;}
+    .resource-link:hover{border-color:var(--accent);background:var(--surface-hover);text-decoration:none;}
+    .resource-label{font-size:0.88rem;font-weight:600;color:var(--text);}
+    .resource-source{font-size:0.75rem;color:var(--text-muted);margin-top:2px;}
+    .prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+    .prompt-card:hover{border-color:var(--accent);}
+    .prompt-text{font-size:0.88rem;color:var(--text);font-style:italic;line-height:1.5;}
+    .prompt-use{font-size:0.75rem;color:var(--text-muted);margin-top:6px;}
+    .footer{max-width:1100px;margin:0 auto;padding:32px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.82rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;}
+    @media(max-width:768px){.header{padding:24px 16px;}.content{padding:0 16px 48px;}.resource-grid,.prompt-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../../index.html">HR Hub</a> &nbsp;/&nbsp; <a href="../benefits.html">Benefits</a> &nbsp;/&nbsp; Leave & Time Off</div>
+  <h1>🏖️ Leave & Time Off</h1>
+  <div class="subtitle">FTO, parental leave, LOA, PFML, and holidays — everything about time away from work at CodePath.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">Flexible Time Off</span>
+    <span class="badge" style="background:var(--cyan-dim);color:var(--cyan);">Parental Leave</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Notion Linked</span>
+  </div>
+</div>
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Leave Types at a Glance</h2>
+    <div class="card">
+      <table class="design-table">
+        <thead><tr><th>Leave Type</th><th>Who It's For</th><th>Key Details</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">Flexible Time Off (FTO)</td>
+            <td style="color:var(--text-muted);">Exempt (salaried) employees</td>
+            <td style="color:var(--text-muted);">No accrual, no cap — take what you need with manager approval</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--cyan);">Parental Leave</td>
+            <td style="color:var(--text-muted);">New parents (birth, adoption, foster)</td>
+            <td style="color:var(--text-muted);">Refer to policy for duration and pay details</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Leave of Absence (LOA)</td>
+            <td style="color:var(--text-muted);">Employees needing extended leave</td>
+            <td style="color:var(--text-muted);">Medical, personal, or family reasons — requires HR approval</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--amber);">Paid Family & Medical Leave (PFML)</td>
+            <td style="color:var(--text-muted);">Varies by state</td>
+            <td style="color:var(--text-muted);">State-administered program for bonding, illness, or caregiving</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--green);">Bereavement</td>
+            <td style="color:var(--text-muted);">All employees</td>
+            <td style="color:var(--text-muted);">Time off for loss of a family member; additional time via FTO</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--text);">Holidays</td>
+            <td style="color:var(--text-muted);">All employees</td>
+            <td style="color:var(--text-muted);">Company-observed holidays listed in the handbook each year</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Try These Prompts</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-text">"How does CodePath's Flexible Time Off policy work for exempt employees? Is there a minimum or maximum?"</div>
+        <div class="prompt-use">→ FTO policy questions</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"An employee is going on parental leave. Walk me through the process — what do they need to submit and when?"</div>
+        <div class="prompt-use">→ Parental leave process</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What's the difference between a Leave of Absence and PFML? Which applies to someone dealing with a serious health condition?"</div>
+        <div class="prompt-use">→ LOA vs. PFML</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"An employee's parent just passed away. What leave are they entitled to and how do I support them through the process?"</div>
+        <div class="prompt-use">→ Bereavement support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Notion Resources</h2>
+    <div class="resource-grid">
+      <a href="https://www.notion.so/1df6208b00cd80bd8c5efe6486754300" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🏖️</div>
+        <div><div class="resource-label">Flexible Time Off Policy</div><div class="resource-source">Notion · Exempt employees FTO guide</div></div>
+      </a>
+      <a href="https://www.notion.so/22c6208b00cd80279eecfa13beb369a8" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📋</div>
+        <div><div class="resource-label">Leave of Absence (LOA) Policy</div><div class="resource-source">Notion · Full LOA process & eligibility</div></div>
+      </a>
+      <a href="https://www.notion.so/22d6208b00cd8012bc6ec00903af5c37" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">👨‍👩‍👧</div>
+        <div><div class="resource-label">Paid Family & Medical Leave</div><div class="resource-source">Notion · PFML details by state</div></div>
+      </a>
+      <a href="https://www.notion.so/1ed6208b00cd807e81ebc7d1a258af65" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📖</div>
+        <div><div class="resource-label">Policy and Procedures</div><div class="resource-source">Notion · All leave policies in one place</div></div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../benefits.html">← Back to Benefits</a></span>
+    <span>Leave & Time Off · HR Hub</span>
+  </div>
+</div>
+</body>
+</html>

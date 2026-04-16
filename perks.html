@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function(){
+      if(sessionStorage.getItem("hrHubAuth")!=="true"){
+        window.location.replace("/hr-hub/gate.html?r="+encodeURIComponent(window.location.href));
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perks & Stipends — HR Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root{--bg:#0f1117;--surface:#1a1d27;--surface-hover:#232736;--border:#2a2e3d;--text:#e4e6ef;--text-muted:#8b8fa3;--accent:#FEA08D;--accent-dim:rgba(254,160,141,0.15);--green:#4ade80;--green-dim:rgba(74,222,128,0.15);--amber:#fbbf24;--amber-dim:rgba(251,191,36,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--radius:12px;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+    a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+    .header{padding:48px 32px 32px;max-width:1100px;margin:0 auto;}
+    .breadcrumb{font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;}.breadcrumb a{color:var(--accent);}
+    .header h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--accent),#FE6901);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .header .subtitle{color:var(--text-muted);font-size:1rem;margin-top:4px;}
+    .badge-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+    .badge{font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;}
+    .content{max-width:1100px;margin:0 auto;padding:0 32px 64px;}
+    .section{margin-top:40px;}
+    .section h2{font-size:1.25rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+    .perk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .perk-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start;}
+    .perk-card:hover{border-color:var(--accent);}
+    .perk-icon{font-size:1.8rem;flex-shrink:0;}
+    .perk-amount{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+    .perk-name{font-size:0.9rem;font-weight:700;margin-top:2px;}
+    .perk-desc{font-size:0.82rem;color:var(--text-muted);margin-top:6px;line-height:1.5;}
+    .resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .resource-link{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-decoration:none;transition:border-color 0.15s,background 0.15s;}
+    .resource-link:hover{border-color:var(--accent);background:var(--surface-hover);text-decoration:none;}
+    .resource-label{font-size:0.88rem;font-weight:600;color:var(--text);}
+    .resource-source{font-size:0.75rem;color:var(--text-muted);margin-top:2px;}
+    .prompt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+    .prompt-card:hover{border-color:var(--accent);}
+    .prompt-text{font-size:0.88rem;color:var(--text);font-style:italic;line-height:1.5;}
+    .prompt-use{font-size:0.75rem;color:var(--text-muted);margin-top:6px;}
+    .footer{max-width:1100px;margin:0 auto;padding:32px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.82rem;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;}
+    @media(max-width:768px){.header{padding:24px 16px;}.content{padding:0 16px 48px;}.perk-grid,.resource-grid,.prompt-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="breadcrumb"><a href="../../index.html">HR Hub</a> &nbsp;/&nbsp; <a href="../benefits.html">Benefits</a> &nbsp;/&nbsp; Perks & Stipends</div>
+  <h1>🎁 Perks & Stipends</h1>
+  <div class="subtitle">Annual stipends, professional development support, home office setup, and other extras that make CodePath a great place to work.</div>
+  <div class="badge-row">
+    <span class="badge" style="background:var(--accent-dim);color:var(--accent);">$1,000 Prof. Dev.</span>
+    <span class="badge" style="background:var(--green-dim);color:var(--green);">Home Office Support</span>
+    <span class="badge" style="background:var(--cyan-dim);color:var(--cyan);">Notion Linked</span>
+  </div>
+</div>
+<div class="content">
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--accent);"></span> Available Stipends & Perks</h2>
+    <div class="perk-grid">
+      <div class="perk-card">
+        <div class="perk-icon">📚</div>
+        <div>
+          <div class="perk-amount" style="color:var(--accent);">$1,000</div>
+          <div class="perk-name">Professional Development</div>
+          <div class="perk-desc">Annual stipend for approved courses, conferences, certifications, books, and learning tools. Resets each year.</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🏠</div>
+        <div>
+          <div class="perk-amount" style="color:var(--cyan);">Home Office</div>
+          <div class="perk-name">Home Office Setup</div>
+          <div class="perk-desc">Equipment and setup support for remote employees. Refer to the benefits package for current allowance details.</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">💪</div>
+        <div>
+          <div class="perk-amount" style="color:var(--green);">Wellness</div>
+          <div class="perk-name">Wellness Budget</div>
+          <div class="perk-desc">Support for gym memberships, fitness apps, mental wellness tools, and healthy lifestyle expenses.</div>
+        </div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🚌</div>
+        <div>
+          <div class="perk-amount" style="color:var(--purple);">Commuter</div>
+          <div class="perk-name">Commuter Benefits</div>
+          <div class="perk-desc">Pre-tax commuter benefit for transit and parking expenses. Check plan details for current contribution limits.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--amber);"></span> Try These Prompts</h2>
+    <div class="prompt-grid">
+      <div class="prompt-card">
+        <div class="prompt-text">"How does the $1,000 professional development stipend work? What's it approved for and how do I submit a request?"</div>
+        <div class="prompt-use">→ Pro dev stipend process</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"I'm a new remote employee. What home office setup support does CodePath provide?"</div>
+        <div class="prompt-use">→ Home office setup</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"What perks and extras does CodePath offer beyond health insurance and 401(k)? I want the full picture."</div>
+        <div class="prompt-use">→ Full perks overview</div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-text">"Can I use my professional development stipend for a certification course I want to take this quarter?"</div>
+        <div class="prompt-use">→ Eligibility check</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="dot" style="background:var(--purple);"></span> Notion Resources</h2>
+    <div class="resource-grid">
+      <a href="https://www.notion.so/13d6208b00cd80459d6ed576303859c8" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📚</div>
+        <div><div class="resource-label">Professional Development</div><div class="resource-source">Notion · Stipend details & approved uses</div></div>
+      </a>
+      <a href="https://www.notion.so/1ed6208b00cd806ca958e0044116974f" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🌱</div>
+        <div><div class="resource-label">Employee Growth & Development</div><div class="resource-source">Notion · Learning culture & resources</div></div>
+      </a>
+      <a href="https://www.notion.so/13d6208b00cd80b29c6cde13e8b51ffa" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">🎁</div>
+        <div><div class="resource-label">Benefits and Perks</div><div class="resource-source">Notion · Full perks overview</div></div>
+      </a>
+      <a href="https://www.notion.so/1ba6208b00cd80089bb9ec68cb77d779" target="_blank" class="resource-link">
+        <div style="font-size:1.3rem;">📋</div>
+        <div><div class="resource-label">Comprehensive Benefits Package</div><div class="resource-source">Notion · All benefits at a glance</div></div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span><a href="../benefits.html">← Back to Benefits</a></span>
+    <span>Perks & Stipends · HR Hub</span>
+  </div>
+</div>
+</body>
+</html>
